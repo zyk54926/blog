@@ -19,7 +19,7 @@ export const siteConfig: SiteConfig = {
     src: 'https://fuwari.vercel.app/_astro/demo-banner.DFyx781H_Z1gN7UP.webp',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
     position: 'center', // Equivalent to object-position, defaults center
     credit: {
-      enable: false,         // Display the credit text of the banner image
+      enable: true,         // Display the credit text of the banner image
       text: '',              // Credit text to be displayed
       url: ''                // (Optional) URL link to the original artwork or artist's page
     }
