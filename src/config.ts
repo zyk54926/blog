@@ -7,8 +7,8 @@ import type {
 import { LinkPreset } from './types/config'
 
 export const siteConfig: SiteConfig = {
-  title: 'zyk的blog',
-  subtitle: '',
+  title: 'Jupyter',
+  subtitle: 'blog',
   lang: 'zh_CN',         // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko'
   themeColor: {
     hue: 250,         // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -25,11 +25,11 @@ export const siteConfig: SiteConfig = {
     }
   },
   favicon: [    // Leave this array empty to use the default favicon
-    // {
-    //   src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
-    //   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-    //   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
-    // }
+    {
+      src: '/favicon/favicon.png',    // Path of the favicon, relative to the /public directory
+      theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
+      sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
+    }
   ]
 }
 
@@ -40,7 +40,7 @@ export const navBarConfig: NavBarConfig = {
     LinkPreset.About,
     {
       name: 'GitHub',
-      url: 'https://github.com/saicaca/fuwari',     // Internal links should not include the base path, as it is automatically added
+      url: '#',     // Internal links should not include the base path, as it is automatically added
       external: true,                               // Show an external link icon and will open in a new tab
     },
   ],
@@ -48,25 +48,20 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
   avatar: 'assets/images/demo-avatar.png',  // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-  name: 'Lorem Ipsum',
-  bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  name: 'Zyk Ly',
+  bio: '一个致力于专心想躺平的小垃圾',
   links: [
     {
       name: 'Twitter',
-      icon: 'fa6-brands:twitter',       // Visit https://icones.js.org/ for icon codes
+      icon: 'fa6-brands:weixin',       // Visit https://icones.js.org/ for icon codes
                                         // You will need to install the corresponding icon set if it's not already included
                                         // `pnpm add @iconify-json/<icon-set-name>`
-      url: 'https://twitter.com',
+      url: '#',
     },
     {
       name: 'Steam',
-      icon: 'fa6-brands:steam',
-      url: 'https://store.steampowered.com',
-    },
-    {
-      name: 'GitHub',
-      icon: 'fa6-brands:github',
-      url: 'https://github.com/saicaca/fuwari',
+      icon: 'fa6-brands:qq',
+      url: '#',
     },
   ],
 }
