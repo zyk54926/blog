@@ -48,16 +48,17 @@ const imageStyle = `object-position: ${position}`
         class='transition absolute inset-0 dark:bg-black/10 bg-opacity-50 pointer-events-none'
     >
     </div>
-    {
-        isLocal && img && (
-            <Image
-                src={img}
-                alt={alt || ''}
-                class={imageClass}
-                style={imageStyle}
-            />
-        )
-    }
+      {
+          isLocal && img && (
+              <Image
+                  src={img}
+                  alt={alt || ''}
+                  class={imageClass}
+                  style={imageStyle}
+              />
+          )
+      }
+
     {
         !isLocal && (
             <img

@@ -21,5 +21,8 @@
   "frontMatter.dashboard.openOnStart": false,
   "[astro]": {
     "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
