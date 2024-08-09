@@ -1,14 +1,16 @@
 ---
-import { getSortedPosts } from '@utils/content-utils'
-import MainGridLayout from '@layouts/MainGridLayout.astro'
 import ArchivePanel from '@components/ArchivePanel.astro'
-import { i18n } from '@i18n/translation'
+import SideBar from '@components/widget/SideBar.astro'
 import I18nKey from '@i18n/i18nKey'
+import { i18n } from '@i18n/translation'
+import MainGridLayout from '@layouts/MainGridLayout.astro'
+import { getSortedPosts } from '@utils/content-utils'
 
 export async function getStaticPaths() {
-  let posts = await getSortedPosts()
+  const posts = await getSortedPosts()
 
   const allTags = posts.reduce((acc, post) => {
+    // biome-ignore lint/complexity/noForEach: <explanation>
     post.data.tags.forEach(tag => acc.add(tag))
     return acc
   }, new Set())
@@ -26,7 +28,20 @@ export async function getStaticPaths() {
 
 const tag = Astro.params.tag as string
 ---
-
+<!-- 标签 -->
 <MainGridLayout title={i18n(I18nKey.archive)} description={i18n(I18nKey.archive)}>
-    <ArchivePanel tags={[tag]}></ArchivePanel>
+  <SideBar class="row-start-3 row-end-4 col-span-2 lg:row-start-2 lg:row-end-3 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" />
+  <div id="content-wrapper" class="row-start-2 row-end-3 col-span-2 lg:col-span-1 overflow-hidden onload-animation">
+  <main id="swup-container" class="transition-swup-fade">
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+      <div class="card-base z-10 px-9 py-6 relative w-full ">
+        <ArchivePanel tags={[tag]}></ArchivePanel>
+      </div>
+  </div>
+  </main>
+</div>
 </MainGridLayout>
+
+<!-- <MainGridLayout title={i18n(I18nKey.archive)} description={i18n(I18nKey.archive)}>
+    <ArchivePanel tags={[tag]}></ArchivePanel>
+</MainGridLayout> -->

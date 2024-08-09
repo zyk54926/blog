@@ -1,9 +1,10 @@
 ---
-import { getCategoryList } from '@utils/content-utils'
-import MainGridLayout from '@layouts/MainGridLayout.astro'
 import ArchivePanel from '@components/ArchivePanel.astro'
-import { i18n } from '@i18n/translation'
+import SideBar from '@components/widget/SideBar.astro'
 import I18nKey from '@i18n/i18nKey'
+import { i18n } from '@i18n/translation'
+import MainGridLayout from '@layouts/MainGridLayout.astro'
+import { getCategoryList } from '@utils/content-utils'
 
 export async function getStaticPaths() {
   const categories = await getCategoryList()
@@ -18,7 +19,18 @@ export async function getStaticPaths() {
 
 const category = Astro.params.category as string
 ---
+<!-- 分类 -->
 
 <MainGridLayout title={i18n(I18nKey.archive)} description={i18n(I18nKey.archive)}>
-    <ArchivePanel categories={[category]}></ArchivePanel>
+  <SideBar class="row-start-3 row-end-4 col-span-2 lg:row-start-2 lg:row-end-3 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" />
+  <div id="content-wrapper" class="row-start-2 row-end-3 col-span-2 lg:col-span-1 overflow-hidden onload-animation">
+  <main id="swup-container" class="transition-swup-fade">
+        <ArchivePanel categories={[category]}></ArchivePanel>
+  </main>
+</div>
 </MainGridLayout>
+
+
+<!-- <MainGridLayout title={i18n(I18nKey.archive)} description={i18n(I18nKey.archive)}>
+    <ArchivePanel categories={[category]}></ArchivePanel>
+</MainGridLayout> -->

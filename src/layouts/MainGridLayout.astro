@@ -1,4 +1,5 @@
 ---
+import { fade } from 'astro:transitions'
 import Footer from '@components/Footer.astro'
 import Navbar from '@components/Navbar.astro'
 import BackToTop from '@components/control/BackToTop.astro'
@@ -6,28 +7,24 @@ import SideBar from '@components/widget/SideBar.astro'
 import { Icon } from 'astro-icon/components'
 import { siteConfig } from '../config'
 import Layout from './Layout.astro'
-
 interface Props {
   title?: string
   banner?: string
   description?: string
 }
-
 const { title, banner, description } = Astro.props
-const hasBannerCredit =
-  siteConfig.banner.enable && siteConfig.banner.credit.enable
+const hasBannerCredit = siteConfig.banner.enable && siteConfig.banner.credit.enable
 const hasBannerLink = !!siteConfig.banner.credit.url
 ---
 
 <Layout title={title} banner={banner} description={description}>
 <slot slot="head" name="head"></slot>
 <div class="max-w-[var(--page-width)] min-h-screen grid grid-cols-[17.5rem_auto] grid-rows-[auto_auto_1fr_auto] lg:grid-rows-[auto_1fr_auto]
-    mx-auto gap-4 relative px-0 md:px-4"
->
+    mx-auto gap-4 relative px-0 md:px-4">
     <div id="top-row" class="relative transition-all duration-700 col-span-2 grid-rows-1" class:list={[""]}>
         <Navbar></Navbar>
 
-        <!-- Banner image credit -->
+        <!-- 背景图片的 -->
         <!-- {hasBannerCredit && <a href={siteConfig.banner.credit.url} id="banner-credit" target="_blank" rel="noopener" aria-label="Visit image source"
                 class:list={["group onload-animation transition-all absolute flex justify-center items-center rounded-full " +
                 "px-3 right-0 bottom-0 bg-black/60 hover:bg-black/70 h-9", {"hover:pr-9 active:bg-black/80": hasBannerLink}]}
@@ -39,27 +36,21 @@ const hasBannerLink = !!siteConfig.banner.credit.url
                   name="fa6-solid:arrow-up-right-from-square">
             </Icon>
         </a>} -->
-        {hasBannerCredit && <div  id="banner-credit"  aria-label="Visit image source"
-        class:list={["group onload-animation transition-all absolute flex justify-center items-center rounded-full " +
-        "px-3 right-0 bottom-0 bg-black/70 h-9" ]}
->
-    <div class="text-white/75 text-xs">{siteConfig.banner.credit.text}</div>
-</div>}
+        { hasBannerCredit && 
+        <div id="banner-credit" aria-label="Visit image source" class:list={["group onload-animation transition-all absolute flex justify-center items-center rounded-full " +
+        "px-3 right-0 bottom-0 bg-black/70 h-9" ]} >
+        <div class="text-white/75 text-xs">{siteConfig.banner.credit.text}</div>
+      </div>}
     </div>
-    <SideBar class="row-start-3 row-end-4 col-span-2 lg:row-start-2 lg:row-end-3 lg:col-span-1 lg:max-w-[17.5rem] onload-animation"></SideBar>
-
+    <!-- <SideBar class="row-start-3 row-end-4 col-span-2 lg:row-start-2 lg:row-end-3 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" />
     <div id="content-wrapper" class="row-start-2 row-end-3 col-span-2 lg:col-span-1 overflow-hidden onload-animation">
-        <!-- the overflow-hidden here prevent long text break the layout-->
-        <!-- make id different from windows.swup global property -->
         <main id="swup-container" class="transition-swup-fade">
             <slot></slot>
         </main>
-
-    </div>
-
-    <div id="footer" class="grid-rows-3 col-span-2 mt-4 onload-animation">
-        <Footer></Footer>
-    </div>
+        
+    </div> -->
+     <slot />
+    <Footer ></Footer>
     <BackToTop></BackToTop>
 </div>
 </Layout>
